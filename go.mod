@@ -1,0 +1,3 @@
+module github.com/yvanflorian/flenv
+
+go 1.23.0
