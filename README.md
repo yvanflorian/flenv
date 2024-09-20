@@ -1,29 +1,12 @@
 # Flenv: A Simple Environment Variables manager
 Tool mostly created to load environment variables in my shell session depending on which which "Stage" I want to work with.
-Working mostly in the terminal, need to have a way to switch to different stages (`prod`, `uat`, `dev`, `local`) and have 
+Working mostly in the terminal, need to have a way to switch to different stages (`prod`, `uat`, `dev`, `local`) and have
 my environment variables values switch quickly.
 
 All variables should be kept in a JSON file (preferably `$HOME/.flenv.json`) and have it encrypted: with `ansible-vault` or `gpg`
 The file maybe should be safe to be committed in a git repo.
 
-Example Structure of the file:
-```json
-{
-  "prod":{
-    "config":{
-      "key1": "value1",
-      "key2": "value2",
-   },
-  },
-  "uat":{
-    "config":{
-      "variable1": "value1",
-      "variable2": "value2",
-   },
-  }
-}
-```
-
+Example Structure of the file like [this one](./.config.json)
 ## Commands Proposal:
 Suggested workflow:
 
@@ -32,14 +15,13 @@ Suggested workflow:
 2. List stages with `flenv stage -list`
 3. Set the current Stage `flenv stage -set <stagename>`
 
-### Configs 
+### Configs
 1. Create config with `flenv config -create <configname>` to multiply for each config
 2. List configs available for a given config: `flenv config -list `
 
 ### Variables
-1. Create Variables under stages > configs: 
+1. Create Variables under stages > configs:
    `flenv variable -create <variablename> -value <variablevalue> -config <configname>`
    Then Prompt to enter the value for as many stages as you have
 2. Show variable value: `flenv variable -show <variablename> -config <configname>` (with optional stage)
 3. Edit variable value: `flenv variable -edit <variablename> -value <newvalue> -config <configname>`
-

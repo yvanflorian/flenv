@@ -1,0 +1,74 @@
+{
+  "flenv": [
+    {
+      "stage": "prod",
+      "configs": [
+        {
+          "name": "redis",
+          "variables": [
+            {
+              "key": "host",
+              "value": "localhost"
+            },
+            {
+              "key": "port",
+              "value": 5432
+            }
+          ]
+        },
+        {
+          "name": "database",
+          "variables": [
+            {
+              "key": "username",
+              "value": "postgres"
+            },
+            {
+              "key": "password",
+              "value": "postgres"
+            },
+            {
+              "key": "port",
+              "value": 5432
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "stage": "uat",
+      "configs": [
+        {
+          "name": "redis",
+          "variables": [
+            {
+              "key": "host",
+              "value": "host.docker.internal"
+            },
+            {
+              "key": "port",
+              "value": 5432
+            }
+          ]
+        },
+        {
+          "name": "database",
+          "variables": [
+            {
+              "key": "username",
+              "value": "postgres"
+            },
+            {
+              "key": "password",
+              "value": "mysecretpassword"
+            },
+            {
+              "key": "port",
+              "value": 5432
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

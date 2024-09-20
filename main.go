@@ -4,36 +4,15 @@ import (
 	"flag"
 	"fmt"
 	"os"
+
+	"github.com/yvanflorian/flenv/stage"
 )
-
-func validateAndProcessStage(name string, list bool, set string) {
-	if name == "" && list == false && set == "" {
-		fmt.Println("Either the create, list or set flags must be provided")
-		os.Exit(1)
-	}
-	if name != "" && (list == true || set != "") {
-		fmt.Println("Only one of create, list or set flag should be provided, and not a combination")
-		os.Exit(1)
-	}
-	if set != "" && (list == true || name != "") {
-		fmt.Println("Only one of create, list or set flag should be provided, and not a combination")
-		os.Exit(1)
-	}
-	if list == true && (name != "" || set != "") {
-		fmt.Println("Only one of create, list or set flag should be provided, and not a combination")
-		os.Exit(1)
-	}
-	fmt.Println("Stage Command valid, proceed to process", name, list, set)
-
-}
 
 func config(name string) {
 	fmt.Println("config name to be created...", name)
 }
 
 func main() {
-	fmt.Println("Main here...")
-
 	if len(os.Args) < 2 {
 		fmt.Println("Expected either 'stage' , 'config' or 'variable'")
 		os.Exit(1)
@@ -52,7 +31,7 @@ func main() {
 			stageCommands.PrintDefaults()
 			os.Exit(1)
 		}
-		validateAndProcessStage(*stagename, *stageList, *stageSet)
+		stage.ValidateAndProcessStage(*stagename, *stageList, *stageSet)
 	case "config":
 		configCommands := flag.NewFlagSet("config", flag.ExitOnError)
 		configname := configCommands.String("create", "", "config Name to Create")
