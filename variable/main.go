@@ -2,10 +2,52 @@ package variable
 
 import (
 	"errors"
+	"flag"
 	"fmt"
 	"log"
 	"os"
+
+	"github.com/yvanflorian/flenv/utils"
 )
+
+func Handle(args []string) {
+	varCommands := flag.NewFlagSet("variable", flag.ExitOnError)
+	varConfig := varCommands.String("config", "", "Config Name that holds this variable")
+	varCreate := varCommands.String("create", "", "Variable name to Create")
+	varShow := varCommands.String("show", "", "Display the Variable value in given stages")
+	varEdit := varCommands.String("edit", "", "Variable name to edit")
+	varStage := varCommands.String("stage", "", "Stage that owns the config and the variable")
+
+	varCommands.Usage = func() {
+		fmt.Fprintf(os.Stderr, "\n")
+		fmt.Fprintf(os.Stderr, "USAGE\n")
+		fmt.Fprintf(os.Stderr, "  flenv variable [flags] [targeted-flags]\n")
+		fmt.Fprintf(os.Stderr, "\n")
+		fmt.Fprintf(os.Stderr, "GENERAL FLAGS\n")
+		fmt.Fprintf(os.Stderr, "  create: Create a new Variable\n")
+		fmt.Fprintf(os.Stderr, "  show: Display the value of the given variable name\n")
+		fmt.Fprintf(os.Stderr, "  edit: Modify the value of a given variable name\n")
+		fmt.Fprintf(os.Stderr, "\n")
+		fmt.Fprintf(os.Stderr, "TARGETED FLAGS\n")
+		fmt.Fprintf(os.Stderr, "  config: Specific Config that owns the variable\n")
+		fmt.Fprintf(os.Stderr, "  stage: Stage name that owns the config and the variable specified\n")
+		fmt.Fprintf(os.Stderr, "\n")
+		fmt.Fprintf(os.Stderr, "EXAMPLE\n")
+		fmt.Fprintf(os.Stderr, " #Create a new variable called host for the redis config\n")
+		fmt.Fprintf(os.Stderr, " $flenv variable --create host --config redis\n")
+		fmt.Fprintf(os.Stderr, "\n")
+		fmt.Fprintf(os.Stderr, " #Display the variable value for the redis host \n")
+		fmt.Fprintf(os.Stderr, " $flenv variable --show host --config redis \n")
+		fmt.Fprintf(os.Stderr, "\n")
+		fmt.Fprintf(os.Stderr, " #Modify the Redis Hostname for the production stage\n")
+		fmt.Fprintf(os.Stderr, " $flenv variable --edit host --config redis --stage prod\n")
+		fmt.Fprintf(os.Stderr, "\n")
+	}
+
+	varCommands.Parse(os.Args[2:])
+	utils.NoEmptyFlags(varCommands)
+	ValidateAndProcess(*varCreate, *varShow, *varEdit, *varConfig, *varStage)
+}
 
 func ValidateAndProcess(
 	create string,
