@@ -44,4 +44,8 @@ func ProcessStage(name string, list bool, set string) {
 			fmt.Println(" >", stage)
 		}
 	}
+
+	if set != "" {
+		log.Println("TODO: setting envs belonging to stage", set)
+	}
 }

@@ -11,17 +11,17 @@ Example Structure of the file like [this one](./.config.json)
 Suggested workflow:
 
 ### Stages
-1. Create the stages with `flenv stage -create <stagename>`
-2. List stages with `flenv stage -list`
-3. Set the current Stage `flenv stage -set <stagename>`
+1. Create the stages with `flenv stage --create <stagename>`
+2. List stages with `flenv stage --list`
+3. Set the current Stage `flenv stage --set <stagename>`
 
 ### Configs
-1. Create config with `flenv config -create <configname>` to multiply for each config
-2. List configs available for a given config: `flenv config -list `
+1. Create config with `flenv config --create <configname>` to multiply for each config
+2. List configs available for a given config: `flenv config --list `
 
 ### Variables
 1. Create Variables under stages > configs:
-   `flenv variable -create <variablename> -value <variablevalue> -config <configname>`
+   `flenv variable --create <variablename> --config <configname>`
    Then Prompt to enter the value for as many stages as you have
-2. Show variable value: `flenv variable -show <variablename> -config <configname>` (with optional stage)
-3. Edit variable value: `flenv variable -edit <variablename> -value <newvalue> -config <configname>`
+2. Show variable value: `flenv variable --show <variablename> --config <configname>` (with optional stage)
+3. Edit variable value: `flenv variable --edit <variablename> --value <newvalue> --config <configname>`
