@@ -24,4 +24,4 @@ Suggested workflow:
    `flenv variable --create <variablename> --config <configname>`
    Then Prompt to enter the value for as many stages as you have
 2. Show variable value: `flenv variable --show <variablename> --config <configname>` (with optional stage)
-3. Edit variable value: `flenv variable --edit <variablename> --value <newvalue> --config <configname>`
+3. Edit variable value: `flenv variable --edit <variablename> --config <configname> --stage <stagename>`

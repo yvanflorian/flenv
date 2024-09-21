@@ -39,9 +39,10 @@ func main() {
 		varCreate := varCommands.String("create", "", "Variable name to Create")
 		varShow := varCommands.String("show", "", "Display the Variable value in given stages")
 		varEdit := varCommands.String("edit", "", "Variable name to edit")
+		varStage := varCommands.String("stage", "", "Stage that owns the config and the variable")
 		varCommands.Parse(os.Args[2:])
 		noEmptyFlags(varCommands)
-		variable.ValidateAndProcess(*varCreate, *varConfig, *varShow, *varEdit)
+		variable.ValidateAndProcess(*varCreate, *varShow, *varEdit, *varConfig, *varStage)
 	default:
 		fmt.Println("Wrong command: Either 'stage', 'config' or 'variable'")
 		os.Exit(1)
