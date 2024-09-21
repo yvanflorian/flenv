@@ -7,6 +7,7 @@ import (
 
 	"github.com/yvanflorian/flenv/config"
 	"github.com/yvanflorian/flenv/stage"
+	"github.com/yvanflorian/flenv/variable"
 )
 
 func main() {
@@ -32,6 +33,15 @@ func main() {
 		// Check if any flags were provided
 		noEmptyFlags(configCommands)
 		config.ValidateAndProcess(*configname, *configList)
+	case "variable":
+		varCommands := flag.NewFlagSet("variable", flag.ExitOnError)
+		varConfig := varCommands.String("config", "", "Config Name that holds this variable")
+		varCreate := varCommands.String("create", "", "Variable name to Create")
+		varShow := varCommands.String("show", "", "Display the Variable value in given stages")
+		varEdit := varCommands.String("edit", "", "Variable name to edit")
+		varCommands.Parse(os.Args[2:])
+		noEmptyFlags(varCommands)
+		variable.ValidateAndProcess(*varCreate, *varConfig, *varShow, *varEdit)
 	default:
 		fmt.Println("Wrong command: Either 'stage', 'config' or 'variable'")
 		os.Exit(1)
