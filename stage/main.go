@@ -15,24 +15,8 @@ func Handle(args []string) {
 	stageList := stageCommands.Bool("list", false, "List the available stages")
 	stageSet := stageCommands.String("set", "", "Set all environment variables for the given stagename")
 
-	stageCommands.Usage = func() {
-		fmt.Fprintf(os.Stderr, "\n")
-		fmt.Fprintf(os.Stderr, "USAGE\n")
-		fmt.Fprintf(os.Stderr, "  flenv stage [flags]\n")
-		fmt.Fprintf(os.Stderr, "\n")
-		fmt.Fprintf(os.Stderr, "AVAILABLE FLAGS\n")
-		fmt.Fprintf(os.Stderr, "  create: Create a new stage.\n")
-		fmt.Fprintf(os.Stderr, "  list: View list of stages managed by flenv.\n")
-		fmt.Fprintf(os.Stderr, "\n")
-		fmt.Fprintf(os.Stderr, "EXAMPLE\n")
-		fmt.Fprintf(os.Stderr, " #Create a new Stage called prod\n")
-		fmt.Fprintf(os.Stderr, " $flenv stage --create prod\n")
-		fmt.Fprintf(os.Stderr, "\n")
-		fmt.Fprintf(os.Stderr, " #List down all stages that flenv is managing\n")
-		fmt.Fprintf(os.Stderr, " $flenv config --list\n")
-		fmt.Fprintf(os.Stderr, "\n")
-		// configCommands.PrintDefaults()
-	}
+	stageCommands.Usage = utils.ShowDocsStage
+
 	stageCommands.Parse(os.Args[2:])
 	utils.NoEmptyFlags(stageCommands)
 	ValidateAndProcessStage(*stagename, *stageList, *stageSet)
