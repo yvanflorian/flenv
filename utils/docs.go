@@ -40,7 +40,7 @@ func ShowDocsStage() {
 	fmt.Fprintf(os.Stderr, " $flenv stage --create prod\n")
 	fmt.Fprintf(os.Stderr, "\n")
 	fmt.Fprintf(os.Stderr, " #List down all stages that flenv is managing\n")
-	fmt.Fprintf(os.Stderr, " $flenv config --list\n")
+	fmt.Fprintf(os.Stderr, " $flenv stage --list\n")
 	fmt.Fprintf(os.Stderr, "\n")
 }
 
