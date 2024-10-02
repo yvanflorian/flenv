@@ -17,6 +17,6 @@ type Config struct {
 }
 
 type Variable struct {
-	Key   string      `json:"key"`
-	Value interface{} `json:"value"`
+	Key   string `json:"key"`
+	Value string `json:"value"`
 }

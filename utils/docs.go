@@ -34,6 +34,7 @@ func ShowDocsStage() {
 	fmt.Fprintf(os.Stderr, "AVAILABLE FLAGS\n")
 	fmt.Fprintf(os.Stderr, "  create: Create a new stage.\n")
 	fmt.Fprintf(os.Stderr, "  list: View list of stages managed by flenv.\n")
+	fmt.Fprintf(os.Stderr, "  set: Set all environment variables in this stage\n")
 	fmt.Fprintf(os.Stderr, "\n")
 	fmt.Fprintf(os.Stderr, "EXAMPLE\n")
 	fmt.Fprintf(os.Stderr, " #Create a new Stage called prod\n")
@@ -41,6 +42,9 @@ func ShowDocsStage() {
 	fmt.Fprintf(os.Stderr, "\n")
 	fmt.Fprintf(os.Stderr, " #List down all stages that flenv is managing\n")
 	fmt.Fprintf(os.Stderr, " $flenv stage --list\n")
+	fmt.Fprintf(os.Stderr, "\n")
+	fmt.Fprintf(os.Stderr, " #Setting the environment variables related to the 'prod' stage\n")
+	fmt.Fprintf(os.Stderr, " $flenv stage --set prod\n")
 	fmt.Fprintf(os.Stderr, "\n")
 }
 
@@ -83,9 +87,11 @@ func ShowDocsVariable() {
 	fmt.Fprintf(os.Stderr, " $flenv variable --create host --config redis\n")
 	fmt.Fprintf(os.Stderr, "\n")
 	fmt.Fprintf(os.Stderr, " #Display the variable value for the redis host \n")
+	fmt.Fprintf(os.Stderr, " #flenv variable --show <variablename> --config <configname> \n")
 	fmt.Fprintf(os.Stderr, " $flenv variable --show host --config redis \n")
 	fmt.Fprintf(os.Stderr, "\n")
 	fmt.Fprintf(os.Stderr, " #Modify the Redis Hostname for the production stage\n")
+	fmt.Fprintf(os.Stderr, " #flenv variable --edit <variablename> --config <configname> --stage <stagename>\n")
 	fmt.Fprintf(os.Stderr, " $flenv variable --edit host --config redis --stage prod\n")
 	fmt.Fprintf(os.Stderr, "\n")
 
