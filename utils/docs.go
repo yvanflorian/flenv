@@ -83,10 +83,14 @@ func ShowDocsVariable() {
 	fmt.Fprintf(os.Stderr, " $flenv variable --create host --config redis\n")
 	fmt.Fprintf(os.Stderr, "\n")
 	fmt.Fprintf(os.Stderr, " #Display the variable value for the redis host \n")
-	fmt.Fprintf(os.Stderr, " $flenv variable --show host --config redis \n")
+	fmt.Fprintf(os.Stderr, " $flenv variable --show host --config redis --stage prod \n")
 	fmt.Fprintf(os.Stderr, "\n")
 	fmt.Fprintf(os.Stderr, " #Modify the Redis Hostname for the production stage\n")
 	fmt.Fprintf(os.Stderr, " $flenv variable --edit host --config redis --stage prod\n")
+	fmt.Fprintf(os.Stderr, "\n")
+	fmt.Fprintf(os.Stderr, "\n")
+	fmt.Fprintf(os.Stderr, " #List all variables available for a given config\n")
+	fmt.Fprintf(os.Stderr, " $flenv variable --list --config redis\n")
 	fmt.Fprintf(os.Stderr, "\n")
 
 }
