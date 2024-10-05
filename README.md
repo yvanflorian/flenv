@@ -25,3 +25,8 @@ Suggested workflow:
    Then Prompt to enter the value for as many stages as you have
 2. Show variable value: `flenv variable --show <variablename> --config <configname>` (with optional stage)
 3. Edit variable value: `flenv variable --edit <variablename> --config <configname> --stage <stagename>`
+
+### Encryption
+Since the file will most likely contain sensitive values, thought it best to have it encrypted.
+Key is stored in the OS KeyRing and I'm using `gpg` to encrypt and decrypt the config file for each read and write.
+Note: Planning Later to allow `1Password` storing of the key

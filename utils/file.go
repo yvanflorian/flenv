@@ -3,6 +3,7 @@ package utils
 import (
 	"encoding/json"
 	"fmt"
+	"log"
 	"os"
 	"path/filepath"
 )
@@ -24,6 +25,23 @@ func ReadConfigFile() (Flenv, error) {
 	if err != nil {
 		return Flenv{}, fmt.Errorf("failure retrieving the config path: %v", err)
 	}
+
+	secret, err := GetSecret()
+	if err != nil {
+		return Flenv{}, err
+	}
+
+	err = DecryptFlenvConfigFile(configPath, secret)
+	if err != nil {
+		return Flenv{}, err
+	}
+	// Schedule file re-encryption
+	defer func() {
+		if err := EncryptFlenvConfigFile(configPath, secret); err != nil {
+			log.Printf("Warning: failed to re-encrypt config file: %v\n", err)
+		}
+	}()
+
 	jsonData, err := os.ReadFile(configPath)
 	if err != nil {
 		return Flenv{}, fmt.Errorf("failed to read config file %v", err)
@@ -42,6 +60,15 @@ func WriteNewConfigFile(config Flenv) error {
 	if err != nil {
 		return fmt.Errorf("failure getting config path: %v", err)
 	}
+	// Init KeyRing and Get secret
+	err = InitKeyRing()
+	if err != nil {
+		return err
+	}
+	secret, err := GetSecret()
+	if err != nil {
+		return err
+	}
 
 	jsonData, err := json.MarshalIndent(config, "", " ")
 	if err != nil {
@@ -54,5 +81,12 @@ func WriteNewConfigFile(config Flenv) error {
 	if err != nil {
 		return fmt.Errorf("failed writing the config file: %v", err)
 	}
+
+	// encrypt file
+	err = EncryptFlenvConfigFile(configPath, secret)
+	if err != nil {
+		return err
+	}
+
 	return nil
 }
