@@ -23,8 +23,10 @@ func main() {
 		config.Handle(os.Args[2:])
 	case "variable":
 		variable.Handle(os.Args[2:])
+	case "var":
+		variable.Handle(os.Args[2:])
 	default:
-		fmt.Println("Wrong command: Either 'stage', 'config' or 'variable'")
+		fmt.Println("Wrong command: Either 'stage', 'config' or 'variable' (or 'var')")
 		os.Exit(1)
 	}
 }

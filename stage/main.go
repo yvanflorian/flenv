@@ -62,6 +62,8 @@ func ProcessStage(name string, list bool, set string) {
 	}
 
 	if set != "" {
-		log.Println("TODO: setting envs belonging to stage", set)
+		if err := SetStage(set); err != nil {
+			log.Fatalf("Failed Setting Stage: %v", err)
+		}
 	}
 }
