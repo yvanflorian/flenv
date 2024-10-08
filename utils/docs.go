@@ -19,6 +19,7 @@ func ShowDocsMain() {
 	fmt.Println("  stage: View, Manage your stages")
 	fmt.Println("  config: View & Manage your stage configurations")
 	fmt.Println("  variable: View & Manage specific configuration variables")
+	fmt.Println("  print: View the Config File that Flenv is managing")
 	fmt.Println("")
 	fmt.Println("LEARN MORE:")
 	fmt.Println(" Use `flenv <command> --help for more information about the given command.`")
