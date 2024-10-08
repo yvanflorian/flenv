@@ -5,6 +5,7 @@ import (
 	"os"
 
 	"github.com/yvanflorian/flenv/config"
+	"github.com/yvanflorian/flenv/printer"
 	"github.com/yvanflorian/flenv/stage"
 	"github.com/yvanflorian/flenv/utils"
 	"github.com/yvanflorian/flenv/variable"
@@ -25,8 +26,10 @@ func main() {
 		variable.Handle(os.Args[2:])
 	case "var":
 		variable.Handle(os.Args[2:])
+	case "print":
+		printer.Handle(os.Args[2:])
 	default:
-		fmt.Println("Wrong command: Either 'stage', 'config' or 'variable' (or 'var')")
+		fmt.Println("Wrong command: Either 'stage', 'config' or 'variable' (or 'var'), or 'print'")
 		os.Exit(1)
 	}
 }

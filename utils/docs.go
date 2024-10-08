@@ -69,6 +69,9 @@ func ShowDocsVariable() {
 	fmt.Fprintf(os.Stderr, "USAGE\n")
 	fmt.Fprintf(os.Stderr, "  flenv variable [flags] [targeted-flags]\n")
 	fmt.Fprintf(os.Stderr, "\n")
+	fmt.Fprintf(os.Stderr, "ALIAS COMMANDS\n")
+	fmt.Fprintf(os.Stderr, "  var: Instead of writing 'variable', you may shorten it to 'var'\n")
+	fmt.Fprintf(os.Stderr, "\n")
 	fmt.Fprintf(os.Stderr, "GENERAL FLAGS\n")
 	fmt.Fprintf(os.Stderr, "  create: Create a new Variable\n")
 	fmt.Fprintf(os.Stderr, "  show: Display the value of the given variable name\n")
@@ -92,5 +95,19 @@ func ShowDocsVariable() {
 	fmt.Fprintf(os.Stderr, " #List all variables available for a given config\n")
 	fmt.Fprintf(os.Stderr, " $flenv variable --list --config redis\n")
 	fmt.Fprintf(os.Stderr, "\n")
+}
 
+// flenv print --help
+func ShowDocsPrint() {
+	fmt.Fprintf(os.Stderr, "\n")
+	fmt.Fprintf(os.Stderr, "USAGE\n")
+	fmt.Fprintf(os.Stderr, "  flenv print [flags]\n")
+	fmt.Fprintf(os.Stderr, "\n")
+	fmt.Fprintf(os.Stderr, "AVAILABLE FLAGS\n")
+	fmt.Fprintf(os.Stderr, "  help: Print this very screen.\n")
+	fmt.Fprintf(os.Stderr, "\n")
+	fmt.Fprintf(os.Stderr, "EXAMPLE\n")
+	fmt.Fprintf(os.Stderr, " #Print out the entire stored JSON config\n")
+	fmt.Fprintf(os.Stderr, " $flenv print\n")
+	fmt.Fprintf(os.Stderr, "\n")
 }

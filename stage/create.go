@@ -41,6 +41,34 @@ func CreateNewStage(name string) error {
 func AppendNewStage(stageName string, config utils.Flenv) error {
 	log.Println("appending new stage to existing config", stageName)
 	var stages []utils.Stage
+	//first stage
+	if len(config.Stages) == 0 {
+		newConfig := utils.Flenv{
+			Stages: stages,
+		}
+		return utils.WriteNewConfigFile(newConfig)
+	}
+
+	existingStage := config.Stages[0]
+	var newConfigs []utils.Config
+	for _, conf := range existingStage.Configs {
+		var newVars []utils.Variable
+		for _, val := range conf.Variables {
+			newVar := utils.Variable{
+				Key:   val.Key,
+				Value: "",
+			}
+			newVars = append(newVars, newVar)
+		}
+		newConfigs = append(newConfigs, utils.Config{
+			Name:      conf.Name,
+			Variables: newVars,
+		})
+	}
+	newStage := utils.Stage{
+		StageName: stageName,
+		Configs:   newConfigs,
+	}
 
 	for _, stage := range config.Stages {
 		if stage.StageName == stageName {
@@ -48,7 +76,7 @@ func AppendNewStage(stageName string, config utils.Flenv) error {
 		}
 		stages = append(stages, stage)
 	}
-	stages = append(stages, utils.Stage{StageName: stageName})
+	stages = append(stages, newStage)
 	newConfig := utils.Flenv{
 		Stages: stages,
 	}
