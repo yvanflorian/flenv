@@ -39,7 +39,7 @@ func ShowDocsStage() {
 	fmt.Fprintf(os.Stderr, "\n")
 	fmt.Fprintf(os.Stderr, "EXAMPLE\n")
 	fmt.Fprintf(os.Stderr, " #Create a new Stage called prod\n")
-	fmt.Fprintf(os.Stderr, " $eval($flenv stage --set prod)\n")
+	fmt.Fprintf(os.Stderr, " $eval $(flenv stage --set prod)\n")
 	fmt.Fprintf(os.Stderr, "\n")
 	fmt.Fprintf(os.Stderr, " #Create a new Stage called prod\n")
 	fmt.Fprintf(os.Stderr, " $flenv stage --create prod\n")
