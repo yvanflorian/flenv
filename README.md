@@ -1,15 +1,22 @@
 # Flenv: A Simple Environment Variables manager
 Tool mostly created to load environment variables in my shell session depending on which which "Stage" I want to work with.
-Working mostly in the terminal, need to have a way to switch to different stages (`prod`, `uat`, `dev`, `local`) and have
+Working mostly in the terminal, I need to have a way to switch to different stages (`prod`, `uat`, `local`, etc.) and have
 my environment variables values switch quickly.
 
-All variables should be kept in a JSON file (preferably `$HOME/.flenv.json`) and have it encrypted: with `ansible-vault` or `gpg`
-The file maybe should be safe to be committed in a git repo.
+For example, I've got some curl commands I frequently run which I usually only modify endpoints (and maybe also credentials) to point to another "stage".
+`flenv` can now serve as the tool to store these variables and help switch easily.
+
+As I'm using [starship] as the prompt for my shell, you may add below custom module to display which 'stage' you're currently working with.
+```toml
+[custom.flenv_cli_load]
+command = "echo $FLENV_STAGE_ENVIRONMENT"
+when = "test -n \"$FLENV_STAGE_ENVIRONMENT\""
+style = "bold yellow"
+format = "[<flenv:$output>]($style) "
+
+```
 
 Example Structure of the file like [this one](./.config.json)
-## Commands Proposal:
-Suggested workflow:
-
 ### Stages
 1. Create the stages with `flenv stage --create <stagename>`
 2. List stages with `flenv stage --list`
